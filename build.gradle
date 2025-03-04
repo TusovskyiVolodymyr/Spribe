@@ -53,8 +53,13 @@ test {
         systemProperties System.getProperties()
         useDefaultListeners(true)
         listeners << "org.spribe.retry.RetryListener"
+
+        includeGroups System.getProperty("groups", "")
+        excludeGroups System.getProperty("excludeGroups", "")
+
         setParallel('methods')
         setThreadCount(System.getProperty("threads", "2").toInteger())
+
     }
 
     reports.html.required = false

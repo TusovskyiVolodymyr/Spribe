@@ -2,7 +2,6 @@ package player;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
-import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.ThreadContext;
 import org.spribe.config.YamlConfig;
 import org.spribe.logging.RestAssuredLogger;
@@ -14,7 +13,7 @@ import java.lang.reflect.Method;
 public abstract class BaseTest {
 
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
         String env = System.getProperty("TEST_ENV", "qa");
         YamlConfig.loadConfig(env);
@@ -32,7 +31,7 @@ public abstract class BaseTest {
         }
     }
 
-    @BeforeMethod()
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod(Method method) {
         ThreadContext.put("threadId", Thread.currentThread().getName());
         ThreadContext.put("testName", method.getName());

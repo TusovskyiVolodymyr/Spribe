@@ -18,12 +18,12 @@ public class PlayerControllerTest extends BaseTest {
 
     private PlayerClient playerClient;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void init() {
         playerClient = new PlayerClient();
     }
 
-    @Test()
+    @Test(groups = { "smoke" } )
     public void getAll() throws Exception {
       var getAllResponse = playerClient.getAllPlayers();
 
@@ -34,7 +34,7 @@ public class PlayerControllerTest extends BaseTest {
               "Ids shouldn't be null");
     }
 
-    @Test
+    @Test(groups = { "smoke" } )
     public void createPlayer_OK_200() {
         var editor = "admin";
         var player = PlayerCreateRequestDto.builder()
@@ -57,7 +57,7 @@ public class PlayerControllerTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(groups = { "smoke" } )
     public void getPlayerById_OK_200() {
         var playerId = playerClient.getAllPlayers().getBody().getPlayers()[0].getId();
         var getPlayerResp = playerClient.getPlayerById(playerId);
@@ -66,7 +66,7 @@ public class PlayerControllerTest extends BaseTest {
         assertEquals(getPlayerResp.getBody().getId(), playerId, "Player ids should match");
     }
 
-    @Test
+    @Test(groups = { "smoke" } )
     public void updatePlayer() {
         var playerId = playerClient
                         .getAllPlayers()
@@ -89,7 +89,7 @@ public class PlayerControllerTest extends BaseTest {
                 .assertAll();
     }
 
-    @Test
+    @Test(groups = { "smoke" } )
     public void deletePlayerById() {
         var editor = "admin";
         var playerId = playerClient
