@@ -10,8 +10,6 @@ import org.spribe.model.player.response.PlayerCreateResponseDto;
 import org.spribe.model.player.response.PlayerGetAllResponseDto;
 import org.spribe.model.player.response.PlayerGetByPlayerIdResponseDto;
 import org.spribe.model.player.response.PlayerUpdateResponseDto;
-import org.spribe.model.player.shared.PlayerItem;
-import org.spribe.utils.JsonUtils;
 import org.spribe.utils.PojoToMapConverter;
 
 import java.util.HashMap;
