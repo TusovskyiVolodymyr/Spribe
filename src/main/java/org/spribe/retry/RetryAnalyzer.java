@@ -8,7 +8,7 @@ import org.testng.ITestResult;
 public class RetryAnalyzer implements IRetryAnalyzer {
 
     private int count = 0;
-    private static final int MAX_RETRY_COUNT = 3;
+    private static final int MAX_RETRY_COUNT = Integer.parseInt(System.getProperty("retriesCount", "3"));
 
     @Override
     public boolean retry(ITestResult iTestResult) {
