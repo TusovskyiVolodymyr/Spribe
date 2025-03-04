@@ -35,16 +35,6 @@ public class PlayerControllerTest extends BaseTest {
     }
 
     @Test
-    public void getAllSECOND() {
-        playerClient.getAllPlayers();
-    }
-
-    @Test
-    public void getAllGKKJDKJFKJDFKJDF() {
-        playerClient.getAllPlayers();
-    }
-
-    @Test
     public void createPlayer_OK_200() {
         var editor = "admin";
         var player = PlayerCreateRequestDto.builder()
