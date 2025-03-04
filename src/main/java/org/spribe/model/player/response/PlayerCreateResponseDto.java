@@ -1,12 +1,12 @@
-package org.spribe.model;
+package org.spribe.model.player.response;
 
 import lombok.Data;
 
 @Data
 public class PlayerCreateResponseDto {
-   private int age;
+   private Integer age;
    private String gender;
-   private int id;
+   private Long id;
    private String login;
    private String password;
    private String role;

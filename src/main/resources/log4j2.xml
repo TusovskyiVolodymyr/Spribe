@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{1}.%method - %msg%n"/>
+        </Console>
+
+        <Routing name="Routing">
+            <Routes pattern="$${ctx:threadId}">
+                <Route>
+                    <File name="FileAppender-${ctx:threadId}" fileName="logs/${ctx:testName:-default}.log" append="false">
+                        <PatternLayout>
+                            <Pattern>%d{HH:mm:ss.SSS} %-5level %class{1}.%method - %msg%n</Pattern>
+                        </PatternLayout>
+                    </File>
+                </Route>
+            </Routes>
+        </Routing>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Routing"/>
+        </Root>
+    </Loggers>
+</Configuration>

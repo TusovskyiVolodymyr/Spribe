@@ -1,0 +1,12 @@
+server:
+  host: "https://qa.api.example.com"
+  port: 8081
+
+database:
+  url: "jdbc:postgresql://qa-db:5432/qa_db"
+  username: "qa_user"
+  password: "qa_password"
+
+restassured:
+  baseUri: "http://3.68.165.45"
+  timeout: 5000

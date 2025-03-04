@@ -4,12 +4,8 @@ import org.apache.http.HttpStatus;
 import org.spribe.api.PlayerClient;
 import org.spribe.model.player.request.PlayerCreateRequestDto;
 import org.spribe.model.player.request.PlayerUpdateRequestDto;
-import org.spribe.model.player.response.PlayerCreateResponseDto;
-import org.spribe.model.player.shared.PlayerItem;
 import org.spribe.utils.AssertObject;
 import org.spribe.utils.RandomUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,7 +14,7 @@ import java.util.Arrays;
 import static org.spribe.utils.RandomUtils.*;
 import static org.testng.Assert.*;
 
-public class First extends BaseTest {
+public class PlayerControllerTest extends BaseTest {
 
     private PlayerClient playerClient;
 
@@ -101,5 +97,19 @@ public class First extends BaseTest {
         new AssertObject(updatePlayerResp.getBody(), request)
                 .assertMatchingFields()
                 .assertAll();
+    }
+
+    @Test
+    public void deletePlayerById() {
+        var editor = "admin";
+        var playerId = playerClient
+                .getAllPlayers()
+                .getBody()
+                .getPlayers()[0]
+                .getId();
+
+        var deletePlayerResp = playerClient.deletePlayerById(editor, playerId);
+
+        assertEquals(deletePlayerResp.getStatusCode(), HttpStatus.SC_NO_CONTENT, "Status code should be 204 (No content)");
     }
 }
